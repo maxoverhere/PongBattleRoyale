@@ -14,10 +14,8 @@ public class PBar : MonoBehaviour
     private Vector3 vecMaxR;
     private Vector3 vecMinR;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        // Center object to its axis
+    void setup(){
+         // Center object to its axis
         transform.position = vecCenter;
 
         // Rotate by vec direction
@@ -27,6 +25,17 @@ public class PBar : MonoBehaviour
         Vector3 vecUnit = vecDirection / vecDirection.magnitude * range;
         vecMaxR = vecCenter + vecUnit;
         vecMinR = vecCenter - vecUnit;
+    }
+
+    public void Init(Vector3 vCtr){
+        vecCenter = vCtr;
+        vecDirection = new Vector3(-vCtr.z, 0, vCtr.x) / vCtr.magnitude;
+        setup();
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
     }
 
     // Update is called once per frame
